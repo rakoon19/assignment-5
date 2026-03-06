@@ -39,18 +39,22 @@
         <div class="flex flex-col w-full gap-4">
             <div class="username-input">
                 <label class="label font-medium text-black mb-2">Username</label>
-                <input type="email" class="input w-full" placeholder="Enter Username" />
+
+                <input type="email" id="username-input" class="input w-full" placeholder="Enter Username" />
+
                 <p class="text-purple-700 text-sm mt-1">Default: admin</p>
             </div>
 
             <div class="password-input">
                 <label class="label font-medium text-black mb-2">Password</label>
-                <input type="password" class="input w-full" placeholder="Enter Password" />
+
+                <input type="password" id="password-input" class="input w-full" placeholder="Enter Password" />
+
                 <p class="text-purple-700 text-sm mt-1">Default: admin123</p>    
             </div>
         </div>
 
-        <button class="btn w-full bg-[#4A00FF] text-white rounded-lg">Sign in</button>
+        <button class="btn w-full bg-[#4A00FF] text-white rounded-lg" id="signin-btn">Sign in</button>
 
         <div class="flex items-center w-full gap-4">
             <hr class="flex-1 border-gray-300">
@@ -66,6 +70,8 @@
             </div>
         </div>
     </section>
+    
 
+    <script src="./js/signin.js"></script>
 </body>
 </html>
