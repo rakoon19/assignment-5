@@ -14,6 +14,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
+    <!-- fontawesome -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
         * {
@@ -23,6 +26,39 @@
 
 </head>
 <body>
+
+    <!-- navbar  -->
+<!-- Mobile Nav -->
+<nav class="flex md:hidden justify-between items-center p-4 bg-white border-b border-[#E9E9E9]">
+    <div class="flex items-center gap-1.5">
+        <img src="assets/github-logo.png" alt="" class="w-9 h-9">
+        <h2 class="font-semibold text-lg">GitHub Issues Tracker</h2>
+    </div>
+    
+    <div class="flex items-center gap-4">
+        <button class="btn btn-ghost btn-sm">
+            <i class="fa-solid fa-magnifying-glass text-xl"></i>
+        </button>
+        <button class="btn btn-ghost btn-sm">
+            <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- Desktop Nav  -->
+<nav class="hidden md:flex justify-around items-center p-4 bg-white border-b border-[#E9E9E9]">
+    <div class="flex items-center gap-1.5">
+        <img src="assets/github-logo.png" alt="" class="w-9 h-9">
+        <h2 class="font-semibold text-2xl">GitHub Issues Tracker</h2>
+    </div>
+
+    <div class="flex items-center gap-4">
+        <input type="text" placeholder="Search issues..." class="input w-64" />
+        <button class="btn bg-[#4A00FF] text-white">
+            <i class="fa-solid fa-plus"></i>New Issue
+        </button>
+    </div>
+</nav>
 
 </body>
 </html>
