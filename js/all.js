@@ -78,9 +78,58 @@ const useData = (d) => {
             const div = document.createElement('div');
             
             const borderColor = cardData.status === "open" ? "#00A96E" : "#A855F7";
+
+            const modalStatus = cardData.status === "open" ? `<p class="bg-[#00A96E] text-white w-20 h-6 text-center rounded-xl text-[12px] place-content-center border-[#BBF7D0] border">
+            Opened
+        </p>` : `<p class="bg-[#EF4444] text-white w-20 h-6 text-center rounded-xl text-[12px] place-content-center border-[#FECACA] border">
+            closed
+        </p>`;
+    
+div.innerHTML = `
+    <div class="w-full h-full min-h-64 rounded-sm shadow-md border-t-4 card cursor-pointer" 
+         style="border-top-color: ${borderColor}" 
+         data-status="${cardData.status}" 
+         onclick="my_modal_${cardData.id}.showModal()">
             
-            div.innerHTML = `
-    <div class="w-full h-full min-h-64 rounded-sm shadow-md border-t-4 card" style="border-top-color: ${borderColor}" data-status="${cardData.status}">
+        <dialog id="my_modal_${cardData.id}" class="modal">
+            <div class="modal-box p-8 max-h-none">
+                <h3 class="text-[24px] font-bold mb-4">${cardData.title}</h3>
+                
+                <div class="flex items-center gap-2 mb-4">
+                    ${modalStatus}
+                    <span class="text-gray-400">•</span>
+                    <p class="text-sm text-gray-500">Opened by ${cardData.author}</p>
+                    <span class="text-gray-400">•</span>
+                    <p class="text-sm text-gray-500">${cardData.createdAt.split('T')[0]}</p>
+                </div>
+
+                <div class="flex gap-2 flex-wrap mb-4">
+                    ${labelCard(cardData.labels)}
+                </div>
+                
+                <p class="py-4 text-gray-700">${cardData.description}</p>
+                
+                <div class="bg-[#F8FAFC] rounded-lg p-4 mb-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-[4px]">
+                            <p class="text-sm font-semibold text-gray-600">Assignee:</p>
+                            <p class="text-sm text-gray-900 font-bold">${cardData.author}</p>
+                        </div>
+                        <div class="space-y-[4px]">
+                            <p class="text-sm font-semibold text-gray-600">Priority:</p>
+                            ${priorityCard(cardData.priority)}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-action">
+                    <form method="dialog">
+                        <button class="btn text-white bg-[#4A00FF] hover:bg-[#4A00FF95]">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+
         <div class="flex flex-col gap-3 p-4 border-b border-b-[#E4E4E7]">
             <div class="flex place-content-between">
                 ${statusCard(cardData.status)}
@@ -101,7 +150,7 @@ const useData = (d) => {
             <p class="text-[12px] text-[#64748B]">${cardData.createdAt.split('T')[0]}</p> 
         </div>
     </div>
-            `;
+`;
             
             parentCards.append(div.firstElementChild);
         }
