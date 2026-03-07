@@ -32,7 +32,7 @@
 
     <!-- navbar  -->
 <!-- Mobile Nav -->
-<nav class="flex md:hidden justify-between items-center p-4 bg-white border-b border-[#E9E9E9]">
+<nav class="flex md:hidden justify-between items-center p-4 bg-white border-b border-[#E9E9E9] shadow-md">
     <div class="flex items-center gap-1.5">
         <img src="assets/github-logo.png" alt="" class="w-9 h-9">
         <h2 class="font-semibold text-lg">GitHub Issues Tracker</h2>
@@ -49,7 +49,7 @@
 </nav>
 
 <!-- Desktop Nav  -->
-<nav class="hidden md:flex justify-between items-center p-4 bg-white border-b border-[#E9E9E9]">
+<nav class="hidden md:flex justify-between items-center p-4 bg-white border-b border-[#E9E9E9] shadow-md">
     <div class="flex items-center gap-1.5">
         <img src="assets/github-logo.png" alt="" class="w-9 h-9">
         <h2 class="font-semibold text-2xl">GitHub Issues Tracker</h2>
@@ -66,7 +66,7 @@
     <!-- all items -->
 <section class="mx-4 md:mx-16 lg:mx-32 xl:mx-61 my-6 md:my-15 flex flex-col gap-4 bg-[#E9E9E9]">
     <!-- btns to switch -->
-    <div class="bg-white flex flex-col sm:flex-row gap-2 p-4 md:p-6 rounded-lg">
+    <div class="bg-white flex flex-col sm:flex-row gap-2 p-4 md:p-6 rounded-lg shadow-md">
         <button class="btn bg-white text-gray-600 rounded-sm font-medium w-full sm:w-30 h-10 hover:bg-gray-50 transition-colors" id="all-btn">All</button>
         <button class="btn bg-white text-gray-600 rounded-sm font-medium w-full sm:w-30 h-10 hover:bg-gray-50 transition-colors" id="open-btn">Open</button>
         <button class="btn bg-white text-gray-600 rounded-sm font-medium w-full sm:w-30 h-10 hover:bg-gray-50 transition-colors" id="closed-btn">Closed</button>
@@ -74,7 +74,7 @@
 
 <div class="flex flex-col">
     <!-- status of items -->
-    <div class="bg-white p-4 md:p-6 rounded-t-lg flex flex-col lg:flex-row gap-4 lg:justify-between lg:items-center">
+    <div class="bg-white p-4 md:p-6 rounded-t-lg flex flex-col lg:flex-row gap-4 lg:justify-between lg:items-center shadow-lg border-b-gray-500">
         
         <div class="status-left flex gap-3 items-start">
             <div class="w-[50px] h-[50px] flex-shrink-0 min-w-[50px] min-h-[50px]">
@@ -100,8 +100,8 @@
         </div>     
     </div>
 
-    <div class="cards bg-[#FBFBFB] p-6 rounded-b-lg grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4" id="cards">
-        
+    <div class="cards bg-[#FBFBFB] p-6 rounded-b-lg grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 shadow-sm" id="cards">
+
     </div>
 </div>
 
