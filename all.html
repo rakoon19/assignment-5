@@ -62,47 +62,53 @@
         </button>
     </div>
 </nav>
+
     <!-- all items -->
-<section class="mx-61 my-15 flex flex-col gap-4 bg-[#E9E9E9]">
+<section class="mx-4 md:mx-16 lg:mx-32 xl:mx-61 my-6 md:my-15 flex flex-col gap-4 bg-[#E9E9E9]">
     <!-- btns to switch -->
-    <div class="bg-white flex gap-2 p-6 rounded-lg">
-
-            <button class="btn bg-white text-gray-600 rounded-sm font-medium w-30 h-10" id="signin-btn">All</button>
-
-            <button class="btn bg-white text-gray-600 rounded-sm font-medium w-30 h-10" id="signin-btn">Open</button>
-
-            <button class="btn bg-white text-gray-600 rounded-sm font-medium w-30 h-10" id="signin-btn">Closed</button>
+    <div class="bg-white flex flex-col sm:flex-row gap-2 p-4 md:p-6 rounded-lg">
+        <button class="btn bg-white text-gray-600 rounded-sm font-medium w-full sm:w-30 h-10 hover:bg-gray-50 transition-colors" id="all-btn">All</button>
+        <button class="btn bg-white text-gray-600 rounded-sm font-medium w-full sm:w-30 h-10 hover:bg-gray-50 transition-colors" id="open-btn">Open</button>
+        <button class="btn bg-white text-gray-600 rounded-sm font-medium w-full sm:w-30 h-10 hover:bg-gray-50 transition-colors" id="closed-btn">Closed</button>
     </div>
-        <div class="">
-                <!-- status of items -->
-            <div class="bg-white p-6 rounded-lg flex place-content-between ">
 
-               <div class="status-left flex gap-2">
-
-                    <img src="assets/Aperture.png" alt="">
-
-                    <div class="flex flex-col">
-                        <h3 class="font-semibold text-[20px]"><span>50</span> Issues</h3>
-                        <p class="text-gray-600 truncate">Track and manage your project issues</p>
-                    </div>
-
-               </div> 
-               <div class="status-right flex items-center gap-4">
-
-                    <div class="open-icon flex gap-2">
-                        <img src="assets/Open-Status.png" alt="" class="w-6 h-6">
-                        <p class="font-medium">Open</p>
-                    </div>
-
-                    <div class="close-icon flex gap-2">
-                        <img src="assets/Closed- Status .png" alt="" class="w-6 h-6">
-                        <p class="font-medium">Close</p>
-                    </div>
-               </div>
+<div class="flex flex-col">
+    <!-- status of items -->
+    <div class="bg-white p-4 md:p-6 rounded-t-lg flex flex-col lg:flex-row gap-4 lg:justify-between lg:items-center">
+        
+        <div class="status-left flex gap-3 items-start">
+            <div class="w-[50px] h-[50px] flex-shrink-0 min-w-[50px] min-h-[50px]">
+                <img src="assets/Aperture.png" alt="Issues icon" class="w-full h-full object-contain">
             </div>
-                <!-- actual items -->
-            <!-- <div class="bg-black ">d</div> -->
-        </div>
+            
+            <div class="flex flex-col min-w-0 flex-1">
+                <h3 class="font-semibold text-lg md:text-[20px]"><span>50</span> Issues</h3>
+                <p class="text-gray-600 text-sm md:text-base truncate">Track and manage your project issues</p>
+            </div>
+        </div> 
+        
+        <div class="status-right flex flex-col sm:flex-row items-start sm:items-center gap-3 md:gap-4 mt-2 lg:mt-0">
+            <div class="open-icon flex gap-2 items-center">
+                <img src="assets/Open-Status.png" alt="Open status" class="w-5 h-5 md:w-6 md:h-6 flex-shrink-0">
+                <p class="font-medium text-sm md:text-base">Open</p>
+            </div>
+
+            <div class="close-icon flex gap-2 items-center">
+                <img src="assets/Closed- Status .png" alt="Closed status" class="w-5 h-5 md:w-6 md:h-6 flex-shrink-0">
+                <p class="font-medium text-sm md:text-base">Close</p>
+            </div>
+        </div>     
+    </div>
+
+    <div class="cards bg-[#FBFBFB] p-6 rounded-b-lg grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4" id="cards">
+        
+    </div>
+</div>
+
+
 </section>
-</body>
+
+    <script src="js/all.js"></script>
+
+</body> 
 </html>
