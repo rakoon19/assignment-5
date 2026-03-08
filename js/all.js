@@ -244,11 +244,40 @@ const updateCardCount = () => {
         lenofCards.innerText = visibleCards.length;
     }
 };
+//need to work with the search option
+const searchDaValue = async() => {
+    const search = document.getElementById('search');
+    
+    if (!search.value.trim()) {
+        return;
+    }
+    
+    const URL = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${search.value}`;
+    
+    spinner(true);
+    parentCards.innerHTML = '';
+    
+    const res = await fetch(URL);
+    const data = await res.json();
+    
+    if (data.data && Object.keys(data.data).length > 0) {
+        useData(data);
+    } else {
+        spinner(false);
+        parentCards.innerHTML = '<p class="text-center text-gray-500 col-span-full">No results found</p>';
+        document.getElementById('lenofCards').innerText = 0;
+    }
+}
 
+// Add event listener
+const search = document.getElementById('search');
+search.addEventListener('input', searchDaValue);
 whichClicked();
 allBtnActive();
 fetchingData();
-//need to work with the search option
+searchDaValue();
+
+
 
 //have to work with modals
 
