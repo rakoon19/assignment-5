@@ -247,17 +247,20 @@ const updateCardCount = () => {
 //need to work with the search option
 const searchDaValue = async() => {
     const search = document.getElementById('search');
+    const mobileSearch = document.getElementById('search-mobile');
+    const searchValue = search.value || mobileSearch.value;
     
-    if (!search.value.trim()) {
+    if (!searchValue.trim()) {
         parentCards.innerHTML = '';
         fetchingData();
         return;
     }
     
-    const URL = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${search.value}`;
+    const URL = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`;
     
     spinner(true);
     parentCards.innerHTML = '';
+    allBtnActive();
     
     const res = await fetch(URL);
     const data = await res.json();
@@ -270,10 +273,35 @@ const searchDaValue = async() => {
         document.getElementById('lenofCards').innerText = 0;
     }
 }
+// mobile search
 
+const mobileSearchBtn = document.getElementById('mobile-search-btn');
+const mobileSearchBar = document.getElementById('mobile-search');
+const mobileSearchInput = document.getElementById('search-mobile');
+
+mobileSearchBtn.addEventListener('click', function() {
+    mobileSearchBar.classList.toggle('hidden');
+    const icon = mobileSearchBtn.querySelector('i');
+    
+    if (mobileSearchBar.classList.contains('hidden')) {
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-magnifying-glass');
+        mobileSearchInput.value = '';
+        allBtnActive();
+        parentCards.innerHTML = '';
+        fetchingData();
+    } else {
+        icon.classList.remove('fa-magnifying-glass');
+        icon.classList.add('fa-xmark');
+        mobileSearchInput.focus();
+    }
+});
+
+mobileSearchInput.addEventListener('input', searchDaValue);
 // Add event listener
 const search = document.getElementById('search');
 search.addEventListener('input', searchDaValue);
+
 whichClicked();
 allBtnActive();
 fetchingData();
