@@ -249,6 +249,8 @@ const searchDaValue = async() => {
     const search = document.getElementById('search');
     
     if (!search.value.trim()) {
+        parentCards.innerHTML = '';
+        fetchingData();
         return;
     }
     
@@ -275,13 +277,6 @@ search.addEventListener('input', searchDaValue);
 whichClicked();
 allBtnActive();
 fetchingData();
-searchDaValue();
-
-
-
-//have to work with modals
-
-//new issue btn optional i think
 
 
 
