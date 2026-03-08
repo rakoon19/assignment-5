@@ -4,7 +4,24 @@ const URL = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
 
 const parentCards = document.getElementById('cards');
 
+// loading screen
+let timer;
+
+const spinner = (loading) => {
+    const spinnerEl = document.getElementById('spinner');
+    
+    if (loading) {
+        timer = setTimeout(function() {
+            spinnerEl.classList.remove('hidden');
+        }, 200);
+    } else {
+        clearTimeout(timer);
+        spinnerEl.classList.add('hidden');
+    }
+}
+
 const fetchingData = async () => {
+    spinner(true);
     const response = await fetch(URL);
     const convertTOjson = await response.json();
     const data = convertTOjson;
@@ -52,13 +69,13 @@ const labelCard = (l) => {
                         <span>ENHANCEMENT</span>
                     </p>`;
         } else if (lowerEL === "good first issue") {
-            return `<p class="bg-[#BBF7D0] text-[#00A96E] w-38 h-6 text-center rounded-xl text-[12px] place-content-center border-[#00A96E] border">
-                        <i class="fa-regular fa-star"></i>
+            return `<p class="bg-[#DBEAFE] text-[#2563EB] w-38 h-6 text-center rounded-xl text-[12px] place-content-center border-[#93C5FD] border">
+                        <i class="fa-regular fa-thumbs-up"></i>
                         <span>GOOD FIRST ISSUE</span>
                     </p>`;
         } else if (lowerEL === "documentation") {
-            return `<p class="bg-[#BBF7D0] text-[#00A96E] w-32 h-6 text-center rounded-xl text-[12px] place-content-center border-[#00A96E] border">
-                        <i class="fa-regular fa-star"></i>
+            return `<p class="bg-[#E9D5FF] text-[#9333EA] w-32 h-6 text-center rounded-xl text-[12px] place-content-center border-[#C084FC] border">
+                        <i class="fa-solid fa-book"></i>
                         <span>DOCUMENTATION</span>
                     </p>`;
         }
@@ -82,7 +99,7 @@ const useData = (d) => {
             const modalStatus = cardData.status === "open" ? `<p class="bg-[#00A96E] text-white w-20 h-6 text-center rounded-xl text-[12px] place-content-center border-[#BBF7D0] border">
             Opened
         </p>` : `<p class="bg-[#EF4444] text-white w-20 h-6 text-center rounded-xl text-[12px] place-content-center border-[#FECACA] border">
-            closed
+            Closed
         </p>`;
     
 div.innerHTML = `
@@ -91,14 +108,14 @@ div.innerHTML = `
          data-status="${cardData.status}" 
          onclick="my_modal_${cardData.id}.showModal()">
             
-        <dialog id="my_modal_${cardData.id}" class="modal">
+        <dialog id="my_modal_${cardData.id}" class="modal cursor-text">
             <div class="modal-box p-8 max-h-none">
                 <h3 class="text-[24px] font-bold mb-4">${cardData.title}</h3>
                 
                 <div class="flex items-center gap-2 mb-4">
                     ${modalStatus}
                     <span class="text-gray-400">•</span>
-                    <p class="text-sm text-gray-500">Opened by ${cardData.author}</p>
+                    <p class="text-sm text-gray-500">${cardData.status === 'open' ? 'Opened' : 'Closed'} by ${cardData.author}</p>
                     <span class="text-gray-400">•</span>
                     <p class="text-sm text-gray-500">${cardData.createdAt.split('T')[0]}</p>
                 </div>
@@ -124,7 +141,7 @@ div.innerHTML = `
                 
                 <div class="modal-action">
                     <form method="dialog">
-                        <button class="btn text-white bg-[#4A00FF] hover:bg-[#4A00FF95]">Close</button>
+                        <button class="btn text-white bg-[#4A00FF] border-0">Close</button>
                     </form>
                 </div>
             </div>
@@ -151,12 +168,13 @@ div.innerHTML = `
         </div>
     </div>
 `;
-            
+               
             parentCards.append(div.firstElementChild);
         }
     });
-    
+     spinner(false);
     updateCardCount();
+
 }
 
 const whichClicked = () => {
@@ -230,13 +248,11 @@ const updateCardCount = () => {
 whichClicked();
 allBtnActive();
 fetchingData();
-// // need to work with the search option
+//need to work with the search option
 
-// // have to work with modals
+//have to work with modals
 
-// // new issue btn optional i think
-
-
+//new issue btn optional i think
 
 
 
