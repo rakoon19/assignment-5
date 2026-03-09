@@ -26,6 +26,7 @@ const fetchingData = async () => {
     const convertTOjson = await response.json();
     const data = convertTOjson;
     useData(data);
+    updateCardCount();
 }
 
 // Status conditional func
@@ -105,8 +106,8 @@ const useData = (d) => {
 div.innerHTML = `
     <div class="w-full h-full min-h-64 rounded-sm shadow-md border-t-4 card cursor-pointer" 
          style="border-top-color: ${borderColor}" 
-         data-status="${cardData.status}" 
-         onclick="my_modal_${cardData.id}.showModal()">
+         data-status="${cardData.status}"
+         data-modal-id="my_modal_${cardData.id}">
             
         <dialog id="my_modal_${cardData.id}" class="modal cursor-text">
             <div class="modal-box p-8 max-h-none">
@@ -172,8 +173,7 @@ div.innerHTML = `
             parentCards.append(div.firstElementChild);
         }
     });
-     spinner(false);
-    updateCardCount();
+    spinner(false);
 
 }
 
@@ -256,17 +256,21 @@ const searchDaValue = async() => {
         return;
     }
     
+    const activeBtn = document.querySelector('.active');
+    const currentFilter = activeBtn ? activeBtn.innerText.toLowerCase() : 'all';
+    
     const URL = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`;
     
     spinner(true);
-    parentCards.innerHTML = '';
-    allBtnActive();
+    parentCards.innerHTML = ''; 
     
     const res = await fetch(URL);
     const data = await res.json();
     
     if (data.data && Object.keys(data.data).length > 0) {
         useData(data);
+        filterCards();
+        updateCardCount();
     } else {
         spinner(false);
         parentCards.innerHTML = '<p class="text-center text-gray-500 col-span-full">No results found</p>';
@@ -274,7 +278,6 @@ const searchDaValue = async() => {
     }
 }
 // mobile search
-
 const mobileSearchBtn = document.getElementById('mobile-search-btn');
 const mobileSearchBar = document.getElementById('mobile-search');
 const mobileSearchInput = document.getElementById('search-mobile');
@@ -297,17 +300,21 @@ mobileSearchBtn.addEventListener('click', function() {
     }
 });
 
+parentCards.addEventListener('click', (e) => {
+    const card = e.target.closest('.card');
+    if (card) {
+        const modalId = card.dataset.modalId;
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.showModal();
+        }
+    }
+});
 mobileSearchInput.addEventListener('input', searchDaValue);
-// Add event listener
+
 const search = document.getElementById('search');
 search.addEventListener('input', searchDaValue);
 
 whichClicked();
 allBtnActive();
 fetchingData();
-
-
-
-
-
-

@@ -7,5 +7,7 @@ signinBTN.addEventListener('click', () => {
     let password = passwordInput.value;
     if( username === 'admin' && password === 'admin123'){
         window.location.replace('all.html');
+    }else{
+        alert("Invalid Username and Password");
     }
 });
